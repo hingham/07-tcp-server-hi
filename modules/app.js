@@ -1,18 +1,24 @@
 'use strict';
 
 const events = require ('./events.js');
-const logger = require('./logger.js');
+const socket = require('./socket.js');
 
-module.exports = {parse};
+module.exports = {findSocket, parseBuffer};
 
-function parse (buffer) {
-  console.log('in app.js', buffer);
-  events.emit('parse-buffer', buffer);
+
+function findSocket(socket){
+  console.log('inside find Socket');
+  events.emit('socket', socket);
 }
-  
 
-// function dispatchAction(userId, buffer) {
+function getBuffer(buffer, id, socketPool){
+  console.log('inside find getBuffer');
 
-//   events.emit('dispatch', {userId: userId, buffer: buffer});
- 
-// }
+  events.emit('parse-buffer', buffer, id, socketPool);
+}
+
+function parseBuffer(buffer, id, socketPool){
+  console.log('trying to parse');
+  events.emit('parse', buffer, id, socketPool);
+}
+

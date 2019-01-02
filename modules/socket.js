@@ -13,8 +13,12 @@ module.exports = {logSocket};
 
 events.on('socket', logSocket);
 
-// events.on('parse-buffer', app.getBuffer);
-
+function User(socket){
+  let id = uuid();
+  this.id = id;
+  this.nickname = `User-${id}`;
+  this.socket = socket;
+}
 /**
  *
  *
@@ -22,18 +26,20 @@ events.on('socket', logSocket);
  */
 
 function logSocket (socket){
-  let id = uuid();
-  socketPool[id] = {
-    id:id,
-    nickname: `User-${id}`,
-    socket: socket,
-  };
+  let user = new User(socket);
+  // let id = uuid();
+  // socketPool[user.id] = {
+  //   id:id,
+  //   nickname: `User-${id}`,
+  //   socket: socket,
+  // };
+  socketPool[user.id] = user;
   socket.write(`enter nickname: `);
   console.log('made a socket');
   // socketArr.push(socketPool[id].nickname);
-  console.log('socket arry', socketArr);
+  console.log('socket arry', socketPool);
   if(socket){
-    socket.on('data', (buffer) => events.emit('parse-buffer', buffer, id, socketPool));  
+    socket.on('data', (buffer) => events.emit('parse-buffer', buffer, user.id, socketPool));  
 
   }
 }

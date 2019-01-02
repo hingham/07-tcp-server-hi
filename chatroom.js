@@ -15,3 +15,7 @@ server.listen(port, () => {
 
 server.on('connection', app.findSocket);
 
+server.on('error', (err)=>{
+  throw err;
+});
+

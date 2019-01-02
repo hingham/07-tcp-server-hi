@@ -6,8 +6,6 @@ module.exports = {parseBuffer};
 
 events.on('parse', parseBuffer);
 
-
-
 /**
  *
  *

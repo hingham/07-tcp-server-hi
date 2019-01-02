@@ -49,9 +49,13 @@ function dispatchAct(entry, userId, socketPool){
   }
   console.log('trying to print arry', socketPoolArr);
   // events.emit('socket-arry', socketPoolArr);
-  if (entry && typeof actions.commands[entry.command] === 'function' ) {
-    actions.commands[entry.command](entry, userId, socketPool, socketPoolArr);
-    console.log('inside conditional', entry);
-  }
+  
+  events.emit(entry.command, entry, userId, socketPool, socketPoolArr);
+
+  // if (entry && typeof actions.commands[entry.command] === 'function' ) {
+    
+  //   actions.commands[entry.command](entry, userId, socketPool, socketPoolArr);
+  //   console.log('inside conditional', entry);
+  // }
   return true;
 }

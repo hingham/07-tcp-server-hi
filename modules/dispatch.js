@@ -11,20 +11,36 @@ let socketPoolArr = [];
 module.exports = {dispatchAct};
 
 events.on('socket-arry', getSocketArr);
-// let socketPoolArr = [];
-// events.on('find-command', commands['@all']);
+events.on('parse-buffer', doBufferThing);
+events.on('send-parsed', dispatchAct);
 
 function getSocketArr(arr, socketPool){
   return arr.push(socketPool);
 }
 
-events.on('parse-buffer', doBufferThing);
-events.on('send-parsed', dispatchAct);
+/**
+ *
+ *
+ * @param {*} buffer
+ * @param {*} userId
+ * @param {*} socketPool
+ */
 
 function doBufferThing(buffer, userId, socketPool){
   // app.parseBuffer(buffer, userId, socketPool);
   events.emit('parse', buffer, userId, socketPool);
 }
+
+
+
+/**
+ *
+ *
+ * @param {*} entry
+ * @param {*} userId
+ * @param {*} socketPool
+ * @returns
+ */
 
 function dispatchAct(entry, userId, socketPool){
   console.log('inside dispatch');

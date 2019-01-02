@@ -7,6 +7,14 @@ const socket = require('./app.js');
 module.exports = {commands};
 
 
+/**
+ *
+ *
+ * @param {*} data
+ * @param {*} userId
+ * @param {*} socketPool
+ */
+
 commands['@all'] = (data, userId, socketPool) => {    
   for( let connection in socketPool ) {
     let user = socketPool[connection];
@@ -14,14 +22,37 @@ commands['@all'] = (data, userId, socketPool) => {
   }
 };
     
+/**
+ *
+ *
+ * @param {*} data
+ * @param {*} userId
+ * @param {*} socketPool
+ */
 commands['@nickname'] =  (data, userId, socketPool) => {
   socketPool[userId].nickname = data.target;
 };
 
+/**
+ *
+ *
+ * @param {*} data
+ * @param {*} userId
+ * @param {*} socketPool
+ */
 commands['@quit'] = (data, userId, socketPool)=>{
   let user = socketPool[userId];
   user.socket.end();
 };
+
+/**
+ *
+ *
+ * @param {*} data
+ * @param {*} userId
+ * @param {*} socketPool
+ * @param {*} socketArr
+ */
 
 commands['@list'] = (data, userId, socketPool, socketArr)=>{
   let users = '';
@@ -29,13 +60,20 @@ commands['@list'] = (data, userId, socketPool, socketArr)=>{
     console.log('the names, ', socketArr[i].nickname);
     users += ' ' + socketArr[i].nickname;
   }
-
   let user = socketPool[userId];
   user.socket.write(`<${'users'}>: ${users}\n`);
   console.log('socketPool', socketPool);
 };
 
 
+/**
+ *
+ *
+ * @param {*} data
+ * @param {*} userId
+ * @param {*} socketPool
+ * @param {*} socketArr
+ */
 commands['@dm'] = (data, userId, socketPool, socketArr) =>{
   for( let connection in socketArr ) {
     let user = socketArr[connection];
@@ -44,10 +82,6 @@ commands['@dm'] = (data, userId, socketPool, socketArr) =>{
     }
   }
 };
-
-// events.on('@dm', dmUser);
-
-// module.exports = dmUser;
 
 
 

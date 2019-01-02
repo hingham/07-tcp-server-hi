@@ -8,6 +8,7 @@
 ### Links and Resources
 * [repo] (https://github.com/hingham/07-tcp-server-hi)
 * [![Build Status](https://www.travis-ci.com/hingham/07-tcp-server-hi.svg?branch=master)](https://www.travis-ci.com/hingham/07-tcp-server-hi)
+* [travis] (https://www.travis-ci.com/hingham/07-tcp-server-hi)
 
 ### Modules
 #### `chatroom.js` -the server file

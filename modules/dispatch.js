@@ -6,9 +6,17 @@ const app = require('./app.js');
 
 const actions = require('./commands.js');
 const parse = require('./parse-buffer.js');
-
+let socketPoolArr = [];
 
 module.exports = {dispatchAct};
+
+events.on('socket-arry', getSocketArr);
+// let socketPoolArr = [];
+// events.on('find-command', commands['@all']);
+
+function getSocketArr(arr, socketPool){
+  return arr.push(socketPool);
+}
 
 events.on('parse-buffer', doBufferThing);
 events.on('send-parsed', dispatchAct);
@@ -20,10 +28,14 @@ function doBufferThing(buffer, userId, socketPool){
 
 function dispatchAct(entry, userId, socketPool){
   console.log('inside dispatch');
-  if ( entry && typeof actions.commands[entry.command] === 'function' ) {
-    actions.commands[entry.command](entry, userId, socketPool);
+  if(!socketPoolArr.includes(socketPool[userId])){
+    socketPoolArr.push(socketPool[userId]);//create the array
+  }
+  console.log('trying to print arry', socketPoolArr);
+  // events.emit('socket-arry', socketPoolArr);
+  if (entry && typeof actions.commands[entry.command] === 'function' ) {
+    actions.commands[entry.command](entry, userId, socketPool, socketPoolArr);
     console.log('inside conditional', entry);
   }
+  return true;
 }
-
-

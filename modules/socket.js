@@ -7,8 +7,9 @@ const app = require('./app.js');
 
 // const commands = {};
 const socketPool = {};
+let socketArr = [];
 
-module.exports = {logSocket };
+module.exports = {logSocket};
 
 events.on('socket', logSocket);
 
@@ -21,8 +22,14 @@ function logSocket (socket){
     nickname: `User-${id}`,
     socket: socket,
   };
+  socket.write(`enter nickname: `);
+  console.log('made a socket');
+  // socketArr.push(socketPool[id].nickname);
+  console.log('socket arry', socketArr);
+  if(socket){
+    socket.on('data', (buffer) => events.emit('parse-buffer', buffer, id, socketPool));  
 
-  socket.on('data', (buffer) => events.emit('parse-buffer', buffer, id, socketPool));  
+  }
 }
 
 

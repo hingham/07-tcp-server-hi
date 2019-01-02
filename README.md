@@ -12,31 +12,38 @@
 * [front-end](http://xyz.com)
 
 ### Modules
-#### `modulename.js`
-##### Exported Values and Methods
+#### `app.js`
+#### `commands.js`
+#### `dispatch.js`
+#### `events.js`
+#### `parse-buffer.js`
+#### `socket.js`
 
-###### `foo(thing) -> string`
-Usage Notes or examples
 
-###### `bar(array) -> array`
-Usage Notes or examples
+###### Usage Notes & running the app
+*Initialize npm: npm init
+*install eslint
+*`node chatroom.js` to start app
+*`nc localhost:3001` to connect
+*upon connection enter nickname by typing: @nickname 'nickname'
+
+
+###### Commands
+*@nickname 'nicknamd' --program asks you to set this first, may use this command to reset 
+*@all hi --sends a message of hi to all users
+*@list all --prints of list of all users connected
+*@quit session --quits your session
+*@dm 'user' message --sends the message to the user specified
 
 ### Setup
 #### `.env` requirements
-* `PORT` - Port Number
-* `MONGODB_URI` - URL to the running mongo instance/db
-
-#### Running the app
-* `npm start`
-* Endpoint: `/foo/bar/`
-  * Returns a JSON object with abc in it.
-* Endpoint: `/bing/zing/`
-  * Returns a JSON object with xyz in it.
+* `PORT` - 3001
 
 #### Tests
-* How do you run tests?
-* What assertions were made?
-* What assertions need to be / should be made?
-
-#### UML
-Link to an image of the UML for your application and response to events
+* How to run tests:  npm run test -watch
+* Assertions made: 
+* * parseBuffer accurately parses a buffer
+* * function dispatchAct runs a console log
+* What assertions need to be / should be made:
+* * commands work as intended
+* * things are being emitted from the appropriate function

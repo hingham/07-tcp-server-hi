@@ -15,6 +15,12 @@ events.on('socket', logSocket);
 
 // events.on('parse-buffer', app.getBuffer);
 
+/**
+ *
+ *
+ * @param {*} socket
+ */
+
 function logSocket (socket){
   let id = uuid();
   socketPool[id] = {

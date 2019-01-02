@@ -8,6 +8,15 @@ events.on('parse', parseBuffer);
 
 
 
+/**
+ *
+ *
+ * @param {*} buffer
+ * @param {*} userId
+ * @param {*} socketPool
+ * @returns
+ */
+
 function parseBuffer(buffer, userId, socketPool){
   console.log('inside parseBuffer');
   let text = buffer.toString().trim();

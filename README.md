@@ -6,12 +6,11 @@
 ### Author: Student/Group Name
 
 ### Links and Resources
-* [repo](http://xyz.com)
-* [travis](http://xyz.com)
-* [back-end](http://xyz.com)
-* [front-end](http://xyz.com)
+* [repo] (https://github.com/hingham/07-tcp-server-hi)
+* [![Build Status](https://www.travis-ci.com/hingham/07-tcp-server-hi.svg?branch=master)](https://www.travis-ci.com/hingham/07-tcp-server-hi)
 
 ### Modules
+#### `chatroom.js` -the server file
 #### `app.js`
 #### `commands.js`
 #### `dispatch.js`
